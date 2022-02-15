@@ -1,0 +1,7 @@
+syntax="proto3";
+
+import "model/doubleList.proto";
+
+message PB_Data {
+    repeated PB_DoubleList data = 1;
+}
