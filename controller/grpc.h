@@ -4,7 +4,7 @@
 #include <grpcpp/grpcpp.h>
 #include <grpcpp/health_check_service_interface.h>
 
-#include "server.grpc.pb.h"
+#include "myserver.grpc.pb.h"
 
 #include <grpc/grpc.h>
 #include <grpcpp/channel.h>

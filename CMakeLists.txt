@@ -7,11 +7,11 @@ include(common.cmake)
 
 
 ###=======================================================================
-add_library(server_grpc_proto
-  "${CMAKE_CURRENT_BINARY_DIR}/server.pb.cc"
-  "${CMAKE_CURRENT_BINARY_DIR}/server.pb.h"
-  "${CMAKE_CURRENT_BINARY_DIR}/server.grpc.pb.cc"
-  "${CMAKE_CURRENT_BINARY_DIR}/server.grpc.pb.h"
+add_library(myserver_grpc_proto
+  "${CMAKE_CURRENT_BINARY_DIR}/myserver.pb.cc"
+  "${CMAKE_CURRENT_BINARY_DIR}/myserver.pb.h"
+  "${CMAKE_CURRENT_BINARY_DIR}/myserver.grpc.pb.cc"
+  "${CMAKE_CURRENT_BINARY_DIR}/myserver.grpc.pb.h"
 
   "${CMAKE_CURRENT_BINARY_DIR}/model/doubleList.pb.cc"
   "${CMAKE_CURRENT_BINARY_DIR}/model/doubleList.pb.h"
@@ -31,7 +31,7 @@ add_library(server_grpc_proto
   )
 
 
-target_link_libraries(server_grpc_proto
+target_link_libraries(myserver_grpc_proto
   ${_REFLECTION}
   ${_GRPC_GRPCPP}
   ${_PROTOBUF_LIBPROTOBUF}
@@ -39,17 +39,17 @@ target_link_libraries(server_grpc_proto
 
 
 ##################################################
-## server
+## myserver
 
-add_executable(server
-  controller/server.cpp
+add_executable(myserver
+  controller/myserver.cpp
 )
 
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
-target_link_libraries(server PRIVATE
+target_link_libraries(myserver PRIVATE
 
-  server_grpc_proto
+  myserver_grpc_proto
 
   ${_REFLECTION}
   ${_GRPC_GRPCPP}
@@ -58,12 +58,12 @@ target_link_libraries(server PRIVATE
 )
 
 
-target_include_directories(server
+target_include_directories(myserver
   PUBLIC ${PROJECT_SOURCE_DIR}/include
   ${PROJECT_SOURCE_DIR}/build
   )
 
-target_sources(server
+target_sources(myserver
     PRIVATE
 )
 
@@ -77,7 +77,7 @@ add_executable(client
 include_directories(${CMAKE_CURRENT_BINARY_DIR})
 
 target_link_libraries(client PRIVATE
-  server_grpc_proto
+  myserver_grpc_proto
 
   ${_REFLECTION}
   ${_GRPC_GRPCPP}
