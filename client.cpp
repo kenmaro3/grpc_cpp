@@ -5,8 +5,10 @@ using namespace grpc;
 
 int main(){
   printf("hello, world!\n");
-  auto channel = CreateChannel("localhost:5001", InsecureChannelCredentials());
-  auto stub = MyServer::NewStub(channel);
+  //auto channel = CreateChannel("localhost:5001", InsecureChannelCredentials());
+  //auto stub = MyServer::NewStub(channel);
+  std::shared_ptr<grpc::Channel> channel = CreateChannel("localhost:5001", InsecureChannelCredentials());
+  std::unique_ptr< MyServer::Stub> stub = MyServer::NewStub(channel);
 
   //================================================
   printf("[Client] test1 called.\n");
