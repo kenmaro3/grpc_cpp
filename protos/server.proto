@@ -4,7 +4,7 @@ import "model/doubleList.proto";
 import "model/data.proto";
 import "model/message.proto";
 
-service InputClient{
+service Server{
   rpc test1(PB_Message) returns (PB_Message){};
   rpc test2(PB_DoubleList) returns (PB_DoubleList){};
   rpc test3(PB_Data) returns (PB_Data){};
